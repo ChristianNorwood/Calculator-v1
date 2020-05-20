@@ -20,9 +20,11 @@ for(var i in Object.keys(num)) {
             text1.value = calculator.opPass;
         }
         else {
+           
             calculator.operand += this.id;
             calculator.opPass += this.id;
-            text1.value = calculator.opPass;
+            text1.value += this.id; 
+            console.log(calculator.operand)
         }
     }
 };
@@ -38,11 +40,10 @@ for(var i in Object.keys(op)){
                 text1.value +=this.id;
                 calculator.opPass = text1.value;
                 calculator.operand = "";
-                console.log(calculator.opPass)
             }
             else {
                 calculator.opPass +=this.id;
-                text1.value = calculator.opPass;
+                text1.value += this.id;
                 calculator.operand = "";
             } 
         }
@@ -60,6 +61,14 @@ del.addEventListener("click", e => {
         calculator.opPass.length -1;
         text1.value = a.substring(0, a.length -1);
         calculator.opPass = text1.value;
+        if (calculator.operand == ""){
+            console.log("whoops")
+        }
+        else {
+            console.log("yeek")
+            var b = calculator.operand;
+            calculator.operand = b.slice(0, b.length -1);
+        }
     }
 });
 
@@ -73,6 +82,7 @@ equals.addEventListener("click", e  => {
     a = text1.value;
     text1.value = eval(a);
     calculator.opPass = text1.value;
+    calculator.operand = text1.value;
 });
 
 dec.addEventListener("click", e => {
@@ -81,12 +91,32 @@ dec.addEventListener("click", e => {
     else {
         calculator.operand += ".";
         calculator.opPass += ".";
-        text1.value = calculator.opPass;
+        text1.value += ".";
     }
 });
 
 sign.addEventListener("click", e => {
     if (text1.value == "0"){
+    }
+    else if(calculator.operand == ""){
+        if (text1.value.includes("*") || text1.value.includes("/") || text1.value.includes("+") || text1.value.includes("-")){
+            
+        }
+        else {
+            calculator.operand = text1.value;
+            if (calculator.operand.includes("-")){
+                let a = calculator.operand.substring(1);
+                calculator.opPass = calculator.opPass.replace(calculator.operand, a);
+                calculator.operand = a;
+                text1.value = calculator.opPass;
+            }
+            else {
+                let position = text1.value.lastIndexOf(calculator.operand);
+                let a = "-" + calculator.operand;
+                text1.value = text1.value.substring(0, position) + a;
+                calculator.operand = a;
+            } 
+        }
     }
     else {
         if (calculator.operand.includes("-")){
@@ -96,10 +126,10 @@ sign.addEventListener("click", e => {
             text1.value = calculator.opPass;
         }
         else {
-            let a = "-" + calculator.operand;
-            calculator.opPass = calculator.opPass.replace(calculator.operand, a);
+            let position = text1.value.lastIndexOf(calculator.operand);
+            let a = "(-" + calculator.operand;
+            text1.value = text1.value.substring(0, position) + a;
             calculator.operand = a;
-            text1.value = calculator.opPass;
         }    
     }  
 });

@@ -3,6 +3,17 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: black;
+}
+
+#backgroundBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 700px;
+    width: 450px;
+    border-radius: 10px;
+    background-color: rgba(197, 180, 180, 0.6);
 }
 
 #calcBox {
@@ -20,6 +31,10 @@ body {
 }
 
 input {
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
     width: 99%;
     grid-column: 1/5;
     text-align: right;
@@ -28,9 +43,34 @@ input {
 
 button {
     font-size: 1.5em;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    background-color: darkgray;
+    color: white;
+    font-family: 'Roboto', sans-serif;
 }
 
 #equals {
     grid-column: 4/5;
     grid-row: 5/7;
+    background-color: orange;
 }
+
+.operator {
+    background-color: black;
+}
+
+#Back {
+    background-color: black;
+}
+
+#C, #\*, #\/ {
+    background-color: gray;
+}
+
+button:active, button:focus {
+    outline: none;
+}
+

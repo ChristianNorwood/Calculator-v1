@@ -127,7 +127,7 @@ sign.addEventListener("click", e => {
         }
         else {
             let position = text1.value.lastIndexOf(calculator.operand);
-            let a = "(-" + calculator.operand;
+            let a = "-" + calculator.operand;
             text1.value = text1.value.substring(0, position) + a;
             calculator.operand = a;
         }    
